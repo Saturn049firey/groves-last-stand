@@ -4,9 +4,13 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7dm0k"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1aoqs"]
+albedo_color = Color(0.9556001, 0.7588778, 0.6294005, 1)
 
-[node name="Player" type="CharacterBody3D" unique_id=1844578736]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7dm0k"]
+material = SubResource("StandardMaterial3D_1aoqs")
+
+[node name="Player" type="CharacterBody3D" unique_id=1844578736 groups=["player"]]
 script = ExtResource("1_1aoqs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1931402491]
@@ -15,4 +19,8 @@ shape = SubResource("CapsuleShape3D_7dm0k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1255770244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_7dm0k")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1341768677]
+transform = Transform3D(0.1792674, 0.18826663, -0.04681978, 0.03404533, 0.09763686, 0.19317259, 0.08187859, -0.4527944, 0.02218702, 0.54494154, 1.1227655, -0.4661287)
 mesh = SubResource("CapsuleMesh_7dm0k")

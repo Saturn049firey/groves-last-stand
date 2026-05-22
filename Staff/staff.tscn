@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cfy6dxqjswpck"]
 
+[ext_resource type="Script" uid="uid://bwbcf0gd7gysw" path="res://Staff/Staff.cs" id="1_l4ah5"]
 [ext_resource type="Shader" uid="uid://b41hukdcuarfx" path="res://Staff/crystal.gdshader" id="1_rwxjf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csokf"]
@@ -72,12 +73,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_l4hhu")
 
-[node name="Staff" type="Node3D" unique_id=538581934]
+[node name="Staff" type="Node3D" unique_id=538581934 node_paths=PackedStringArray("Crystal")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+script = ExtResource("1_l4ah5")
+Crystal = NodePath("Crystal")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1679654842]
+[node name="Staff" type="MeshInstance3D" parent="." unique_id=1679654842]
 transform = Transform3D(0.9563047, 0.29237166, 0, -0.29237166, 0.9563047, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pfmj7")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=501164872]
+[node name="Crystal" type="MeshInstance3D" parent="." unique_id=501164872]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.5, 26.8, -0.05)
 mesh = SubResource("ArrayMesh_uglyn")
