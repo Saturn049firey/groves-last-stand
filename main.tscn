@@ -1,31 +1,63 @@
 [gd_scene format=3 uid="uid://03orsrnm782s"]
 
+[ext_resource type="PackedScene" uid="uid://tddhgiuawsrd" path="res://Portal/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dwvvi2dwg0tv4" path="res://Portal/portal.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://xvdilaawybyt" path="res://Player/Camera.cs" id="2_h2yge"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_0xm2m"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7dm0k"]
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("PhysicalSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+volumetric_fog_albedo = Color(0.5408399, 0.43784207, 0.38334382, 1)
+volumetric_fog_sky_affect = 0.3
 
 [node name="Main" type="Node3D" unique_id=1892234761]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1166510289]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1022041836]
+environment = SubResource("Environment_h2yge")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=213740954]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.139057, 0, 1.3732824, -0.40682888)
+[node name="Light" type="DirectionalLight3D" parent="." unique_id=1260148837]
+transform = Transform3D(0.8660255, -0.35355335, -0.35355347, -0.12940942, -0.84150636, 0.524519, -0.4829629, -0.40849367, -0.7745192, 0, 25, 0)
+light_energy = 2.0
+shadow_enabled = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1080007500]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_7dm0k")
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=64049587]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1892566472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_7dm0k")
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1483970981]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=680520059]
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=1844578736 instance=ExtResource("1_0xm2m")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player" unique_id=2088257508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.1)
+current = true
+script = ExtResource("2_h2yge")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport" unique_id=680520059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5025389, 0)
 use_collision = true
 size = Vector3(50, 1, 50)
 
-[node name="Portal" parent="." unique_id=137903878 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13644004, 1.1474612, -3.0209465)
-metadata/_edit_group_ = true
+[node name="Portal" parent="SubViewportContainer/SubViewport" unique_id=137903878 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 2, -9)

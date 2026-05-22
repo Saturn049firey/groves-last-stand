@@ -18,8 +18,8 @@ void fragment() {
     
     // Cerveno-fialove barvy bez modre
     vec3 col = mix(
-        vec3(0.7, 0.0, 0.0),
-        vec3(0.9, 0.0, 0.1),
+        vec3(0.6, 0.0, 0.0),
+        vec3(0.6, 0.0, 0.2),
         spiral
     );
     
