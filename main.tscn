@@ -23,6 +23,7 @@ volumetric_fog_albedo = Color(0.5408399, 0.43784207, 0.38334382, 1)
 volumetric_fog_sky_affect = 0.3
 
 [node name="Main" type="Node3D" unique_id=1892234761]
+transform = Transform3D(2.2831972, 0, 0, 0, 2.2831972, 0, 0, 0, 2.2831972, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1022041836]
 environment = SubResource("Environment_h2yge")
