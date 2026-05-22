@@ -1,0 +1,87 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b0rsu5j2vlufc"]
+
+[sub_resource type="Shader" id="Shader_grrij"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx, unshaded;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+// Nové proměnné pro spiral efekt
+uniform float speed : hint_range(0.1, 5.0) = 1.5;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+			MAIN_CAM_INV_VIEW_MATRIX[0],
+			MAIN_CAM_INV_VIEW_MATRIX[1],
+			MAIN_CAM_INV_VIEW_MATRIX[2],
+			MODEL_MATRIX[3]);
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(
+			vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0),
+			vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
+			vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	// Spiral efekt
+	vec2 uv = base_uv - vec2(0.5);
+	float radius = length(uv);
+
+	// Kulatý tvar - kraje průhledné
+	if (radius > 0.5) {
+		discard;
+	}
+
+	float angle = atan(uv.y, uv.x);
+	float spiral = mod(angle / (2.0 * 3.14159) + radius * 3.0 - TIME * speed, 1.0);
+
+	// Cerveno-oranzova barva spiraly
+	vec3 spiral_col = mix(
+		vec3(1.0, 0.2, 0.0),  // oranzova
+		vec3(0.7, 0.0, 0.0),  // cervena
+		spiral
+	);
+
+	// Kraj ztmavi
+	spiral_col *= 1.0 - radius * 1.5;
+
+	// Vertex color (Color Ramp z particles)
+	spiral_col *= COLOR.rgb;
+
+	ALBEDO = spiral_col;
+	EMISSION = spiral_col * 2.0;
+	ALPHA = COLOR.a * (1.0 - radius * 2.0);
+}"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_grrij")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/speed = 1.5
