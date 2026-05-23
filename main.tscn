@@ -61,6 +61,39 @@ transform = Transform3D(0.8660255, -0.35355335, -0.35355347, -0.12940942, -0.841
 light_energy = 2.0
 shadow_enabled = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1086211529 node_paths=PackedStringArray("HealthBar", "ManaBar", "SpellLabel", "Player")]
+script = ExtResource("7_272bh")
+HealthBar = NodePath("VBoxContainer/HpPlayer")
+ManaBar = NodePath("VBoxContainer/ManaPlayer")
+SpellLabel = NodePath("VBoxContainer/Spell")
+Player = NodePath("../SubViewportContainer/SubViewport/Player")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=132827854]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -91.0
+offset_right = 360.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Spell" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=580300959]
+layout_mode = 2
+theme = SubResource("Theme_272bh")
+
+[node name="HpPlayer" type="ProgressBar" parent="CanvasLayer/VBoxContainer" unique_id=496510647]
+custom_minimum_size = Vector2(320, 30)
+layout_mode = 2
+theme = SubResource("Theme_kek77")
+show_percentage = false
+
+[node name="ManaPlayer" type="ProgressBar" parent="CanvasLayer/VBoxContainer" unique_id=1624463305]
+custom_minimum_size = Vector2(320, 30)
+layout_mode = 2
+theme = SubResource("Theme_efxa6")
+show_percentage = false
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=64049587]
 texture_filter = 1
 anchors_preset = 15
@@ -106,37 +139,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 21)
 
 [node name="Enemy3" parent="SubViewportContainer/SubViewport" unique_id=569131240 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 21)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1086211529 node_paths=PackedStringArray("HealthBar", "ManaBar", "SpellLabel", "Player")]
-script = ExtResource("7_272bh")
-HealthBar = NodePath("VBoxContainer/HpPlayer")
-ManaBar = NodePath("VBoxContainer/ManaPlayer")
-SpellLabel = NodePath("VBoxContainer/Spell")
-Player = NodePath("../Player")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/CanvasLayer" unique_id=132827854]
-anchors_preset = -1
-anchor_top = 0.92800003
-anchor_right = 0.18800001
-anchor_bottom = 0.98100007
-offset_left = 20.0
-offset_top = -0.24005127
-offset_right = 0.039978027
-offset_bottom = 0.51989746
-grow_vertical = 0
-
-[node name="Spell" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/VBoxContainer" unique_id=580300959]
-layout_mode = 2
-theme = SubResource("Theme_272bh")
-
-[node name="HpPlayer" type="ProgressBar" parent="SubViewportContainer/SubViewport/CanvasLayer/VBoxContainer" unique_id=496510647]
-custom_minimum_size = Vector2(320, 30)
-layout_mode = 2
-theme = SubResource("Theme_kek77")
-show_percentage = false
-
-[node name="ManaPlayer" type="ProgressBar" parent="SubViewportContainer/SubViewport/CanvasLayer/VBoxContainer" unique_id=1624463305]
-custom_minimum_size = Vector2(320, 30)
-layout_mode = 2
-theme = SubResource("Theme_efxa6")
-show_percentage = false
