@@ -1,12 +1,53 @@
 [gd_scene format=3 uid="uid://03orsrnm782s"]
 
-[ext_resource type="PackedScene" uid="uid://tddhgiuawsrd" path="res://Portal/player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://tddhgiuawsrd" path="res://Player/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dwvvi2dwg0tv4" path="res://Portal/portal.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://xvdilaawybyt" path="res://Player/Camera.cs" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cfy6dxqjswpck" path="res://Staff/staff.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dyt02qdfwx6cp" path="res://Spells/spell.tscn" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bblh88q15jkeh" path="res://Enemy/enemy.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cpl0loejy5jly" path="res://Flower/flower.tscn" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://b5lq6mcr78ubl" path="res://HUD/HUD.cs" id="7_272bh"]
+
+[sub_resource type="Theme" id="Theme_272bh"]
+default_font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(0.7121294, 0.7121294, 0.71212935, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_kek77"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_272bh")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_5vw27")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
+bg_color = Color(0.7137255, 0.7137255, 0.7137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+bg_color = Color(0.3529412, 0.7764706, 0.81960785, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_efxa6"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_4c57u")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_kek77")
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_0xm2m"]
 
@@ -26,32 +67,47 @@ volumetric_fog_density = 0.005
 volumetric_fog_albedo = Color(0.5408399, 0.43784207, 0.38334382, 1)
 volumetric_fog_sky_affect = 0.3
 
-[sub_resource type="Theme" id="Theme_272bh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
-bg_color = Color(0.5882353, 0, 0, 1)
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="Theme" id="Theme_kek77"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_5vw27")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
-bg_color = Color(0.3541906, 0.776837, 0.8211041, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="Theme" id="Theme_efxa6"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_4c57u")
-ProgressBar/styles/fill = null
-
 [node name="Main" type="Node3D" unique_id=1892234761]
 transform = Transform3D(2.2831972, 0, 0, 0, 2.2831972, 0, 0, 0, 2.2831972, 0, 0, 0)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1086211529 node_paths=PackedStringArray("HealthBar", "ManaBar", "SpellLabel", "Player")]
+follow_viewport_enabled = true
+script = ExtResource("7_272bh")
+HealthBar = NodePath("VBoxContainer/HpPlayer")
+ManaBar = NodePath("VBoxContainer/ManaPlayer")
+SpellLabel = NodePath("VBoxContainer/Spell")
+Player = NodePath("../SubViewportContainer/SubViewport/Player")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=132827854]
+anchors_preset = -1
+anchor_top = 0.91600007
+anchor_right = 0.312
+anchor_bottom = 1.0
+offset_top = -0.28009033
+offset_right = 0.95996094
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Spell" type="Label" parent="HUD/VBoxContainer" unique_id=580300959]
+layout_mode = 2
+theme = SubResource("Theme_272bh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Spell"
+
+[node name="HpPlayer" type="ProgressBar" parent="HUD/VBoxContainer" unique_id=496510647]
+custom_minimum_size = Vector2(320, 40)
+layout_mode = 2
+theme = SubResource("Theme_kek77")
+value = 50.0
+show_percentage = false
+
+[node name="ManaPlayer" type="ProgressBar" parent="HUD/VBoxContainer" unique_id=1624463305]
+custom_minimum_size = Vector2(320, 40)
+layout_mode = 2
+theme = SubResource("Theme_efxa6")
+value = 50.0
+show_percentage = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1022041836]
 environment = SubResource("Environment_h2yge")
@@ -60,39 +116,6 @@ environment = SubResource("Environment_h2yge")
 transform = Transform3D(0.8660255, -0.35355335, -0.35355347, -0.12940942, -0.84150636, 0.524519, -0.4829629, -0.40849367, -0.7745192, 0, 25, 0)
 light_energy = 2.0
 shadow_enabled = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1086211529 node_paths=PackedStringArray("HealthBar", "ManaBar", "SpellLabel", "Player")]
-script = ExtResource("7_272bh")
-HealthBar = NodePath("VBoxContainer/HpPlayer")
-ManaBar = NodePath("VBoxContainer/ManaPlayer")
-SpellLabel = NodePath("VBoxContainer/Spell")
-Player = NodePath("../SubViewportContainer/SubViewport/Player")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=132827854]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -91.0
-offset_right = 360.0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Spell" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=580300959]
-layout_mode = 2
-theme = SubResource("Theme_272bh")
-
-[node name="HpPlayer" type="ProgressBar" parent="CanvasLayer/VBoxContainer" unique_id=496510647]
-custom_minimum_size = Vector2(320, 30)
-layout_mode = 2
-theme = SubResource("Theme_kek77")
-show_percentage = false
-
-[node name="ManaPlayer" type="ProgressBar" parent="CanvasLayer/VBoxContainer" unique_id=1624463305]
-custom_minimum_size = Vector2(320, 30)
-layout_mode = 2
-theme = SubResource("Theme_efxa6")
-show_percentage = false
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=64049587]
 texture_filter = 1
@@ -119,6 +142,7 @@ transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 2, -9)
 
 [node name="Player" parent="SubViewportContainer/SubViewport" unique_id=1844578736 node_paths=PackedStringArray("staff") instance=ExtResource("1_0xm2m")]
 staff = NodePath("Staff")
+SpellScene = ExtResource("4_5vw27")
 
 [node name="Staff" parent="SubViewportContainer/SubViewport/Player" unique_id=538581934 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(-0.008085358, 0, 0.04934194, -0.0026563148, 0.04992749, -0.00043527383, -0.049270384, -0.002691741, -0.008073633, 0.65659946, 0.18302202, -0.74431336)
@@ -135,7 +159,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -16, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21)
 
 [node name="Enemy2" parent="SubViewportContainer/SubViewport" unique_id=558259988 instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 21)
 
 [node name="Enemy3" parent="SubViewportContainer/SubViewport" unique_id=569131240 instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 21)

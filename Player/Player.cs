@@ -20,6 +20,8 @@ public partial class Player : CharacterBody3D
 	private SpellType _currentSpell = SpellType.Fireball;
 
 	[Export] public Staff staff;
+	[Export] public PackedScene SpellScene;
+	[Export] public float ManaCost = 10f;
 
 	public override void _Ready()
 	{
@@ -30,7 +32,6 @@ public partial class Player : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Mana regenerace
 		_mana = Mathf.Min(_mana + _manaRegenRate * (float)delta, MaxMana);
 
 		Vector3 velocity = Velocity;
@@ -70,12 +71,32 @@ public partial class Player : CharacterBody3D
 				CycleSpell(1);
 			else if (mouseBtn.ButtonIndex == MouseButton.WheelDown)
 				CycleSpell(-1);
+			else if (mouseBtn.ButtonIndex == MouseButton.Left)
+				CastSpell();
 		}
 
 		if (Input.IsActionJustPressed("spell_1")) SwitchSpell(SpellType.Fireball);
 		if (Input.IsActionJustPressed("spell_2")) SwitchSpell(SpellType.IceShard);
 		if (Input.IsActionJustPressed("spell_3")) SwitchSpell(SpellType.Lightning);
 		if (Input.IsActionJustPressed("spell_4")) SwitchSpell(SpellType.Poison);
+	}
+
+	private void CastSpell()
+	{
+		if (SpellScene == null) return;
+		if (_mana < ManaCost) return;
+
+		_mana -= ManaCost;
+
+		var spell = SpellScene.Instantiate<Spell>();
+		GetParent().AddChild(spell);
+
+		// Kouzlo startuje před hráčem ve výšce očí
+		var camera = GetNode<Camera3D>("Camera3D");
+		spell.GlobalPosition = camera.GlobalPosition + (-camera.GlobalTransform.Basis.Z * 1.0f);
+
+		// Směr = kam se díváš
+		spell.Initialize(-camera.GlobalTransform.Basis.Z);
 	}
 
 	private void CycleSpell(int direction)
@@ -90,5 +111,14 @@ public partial class Player : CharacterBody3D
 		_currentSpell = spell;
 		staff?.SetCrystalColor(spell);
 		GD.Print("Spell: " + spell);
+	}
+
+	public void TakeDamage(float amount)
+	{
+		_health -= amount;
+		_health = Mathf.Max(_health, 0);
+
+		if (_health <= 0)
+			GD.Print("GAME OVER");
 	}
 }

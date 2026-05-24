@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dyt02qdfwx6cp"]
+
+[ext_resource type="Script" uid="uid://cnqnfag44qi3v" path="res://Spells/Spell.cs" id="1_0jlle"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ofgdw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glgh2"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2132w"]
+material = SubResource("StandardMaterial3D_glgh2")
+
+[node name="Spell" type="Area3D" unique_id=1226494119]
+script = ExtResource("1_0jlle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=233640635]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+shape = SubResource("SphereShape3D_ofgdw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=475196183]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("SphereMesh_2132w")

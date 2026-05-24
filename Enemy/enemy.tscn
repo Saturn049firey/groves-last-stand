@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bblh88q15jkeh"]
 
 [ext_resource type="Script" uid="uid://86l3b7hbayjb" path="res://Enemy/Enemy.cs" id="1_7k104"]
+[ext_resource type="PackedScene" uid="uid://in0ysjvu4hql" path="res://Enemy/heath_bar.tscn" id="2_px1sc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gqquq"]
 
@@ -10,8 +11,12 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_s7bn3"]
 material = SubResource("StandardMaterial3D_tt7e2")
 
-[node name="Enemy" type="CharacterBody3D" unique_id=657858871]
+[sub_resource type="ViewportTexture" id="ViewportTexture_am0pq"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Enemy" type="CharacterBody3D" unique_id=657858871 node_paths=PackedStringArray("HpBar") groups=["enemy"]]
 script = ExtResource("1_7k104")
+HpBar = NodePath("SubViewport/HpPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=333746202]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -20,3 +25,16 @@ shape = SubResource("CapsuleShape3D_gqquq")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=497633075]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_s7bn3")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=953966228]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 64)
+
+[node name="HpPlayer" parent="SubViewport" unique_id=810911626 instance=ExtResource("2_px1sc")]
+value = 0.0
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1412564278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_am0pq")
