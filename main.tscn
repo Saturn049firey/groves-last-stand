@@ -43,6 +43,10 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_kek77")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg77c"]
 bg_color = Color(0.2590032, 0.8407643, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="Theme" id="Theme_ycdy4"]
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_dg77c")
