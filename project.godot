@@ -31,6 +31,7 @@ project/assembly_name="Groves_Last_Stand"
 
 player=""
 enemy=""
+flower=""
 
 [input]
 

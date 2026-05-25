@@ -46,3 +46,18 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [ ] Pause menu
 - [ ] Score system
 - [ ] Difficulty scaling per wave
+
+## Ideas
+- **Spell dice** - Instead of fixed damage, roll random dice
+  - Fireball = 2d6 (2-12 damage)
+  - Ice Shard = 1d8 (1-8 damage)
+  - Lightning = 3d4 (3-12 damage)
+  - Poison Cloud = 1d4 per tick (1-4 damage)
+- **Spell slots** - Instead of mana bar, limited number of casts per spell, refills after each wave
+- **Critical hit** - 10% chance for double damage
+- **Resistance** - Some demons are resistant to certain spells (ice demon takes less from Ice Shard etc.)
+- **Leveling** - After each wave gain points to upgrade spells, HP or mana
+- **Different demon types** - Each has different HP, speed and resistance
+- **Spell combos** - Ice Shard slows enemy, then Fireball deals bonus damage (DnD synergy)
+- **Flower HP bar** - Show flower HP in HUD when far away, show 3D bar above flower when close
+- **Enemy direction indicator** - Show arrows or dots on the edge of the screen pointing to where enemies are coming from

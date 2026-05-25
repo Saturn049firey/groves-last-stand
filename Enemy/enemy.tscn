@@ -32,7 +32,6 @@ transparent_bg = true
 size = Vector2i(256, 64)
 
 [node name="HpPlayer" parent="SubViewport" unique_id=810911626 instance=ExtResource("2_px1sc")]
-value = 0.0
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1412564278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)

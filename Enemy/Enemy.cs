@@ -17,7 +17,7 @@ public partial class Enemy : CharacterBody3D
 	public override void _Ready()
 	{
 		_health = MaxHealth;
-		_target = GetTree().GetFirstNodeInGroup("player") as Node3D;
+		_target = GetTree().GetFirstNodeInGroup("flower") as Node3D;
 
 		if (HpBar != null)
 		{
