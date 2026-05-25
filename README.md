@@ -5,18 +5,17 @@
 Cast spells, manage your mana, and protect the grove at all costs.
 Built in Godot 4 with a PS1 retro aesthetic.
 
+### Spells
+- **Fireball** (10 mana) - Deals damage, then sets the enemy on fire dealing additional damage over 5 seconds
+- **Ice Shard** (15 mana) - Deals damage and slows the enemy for 5 seconds
+- **Lightning** (25 mana) - Deals damage and chains to nearby enemies, damage halves with each bounce
+- **Poison Cloud** (50 mana) - Launches a slow-moving cloud that stays in place for 5 seconds dealing damage to all enemies inside
+
 ## How to play
 - WASD - Movement
 - Mouse - Look around
 - Left Click - Cast spell
 - 1/2/3/4 or Scroll Wheel - Switch spells
-- ESC - Release cursor
-
-## Spells
-- **Fireball** (10 mana) - Deals damage, then sets the enemy on fire dealing additional damage over 5 seconds
-- **Ice Shard** (15 mana) - Deals damage and slows the enemy for 5 seconds
-- **Lightning** (25 mana) - Deals damage and chains to nearby enemies, damage halves with each bounce
-- **Poison Cloud** (50 mana) - Launches a slow-moving cloud that stays in place for 5 seconds dealing damage to all enemies inside
 
 ## TODO list
 ### Gameplay
@@ -25,12 +24,12 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [ ] Game over screen when flower dies
 - [ ] Victory screen after surviving X waves
 - [ ] Implement spell effects (Fireball burn, Ice slow, Lightning chain, Poison cloud)
-- [ ] Add spell cooldowns
-- [ ] Add enemy HP bars (Sprite3D billboard)
+- [x] Add spell cooldowns
+- [x] Add enemy HP bars (Sprite3D billboard)
 
 ### Visuals
 - [ ] PS1 post-processing shader (low resolution, fog)
-- [ ] Demon model (billboard sprite rendered from Blender)
+- [ ] Demon model (billboard sprite)
 - [ ] Sacred flower model
 - [ ] Environment (trees, rocks, arena boundary)
 - [ ] Spell particle effects
