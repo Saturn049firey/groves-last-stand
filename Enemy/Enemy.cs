@@ -53,12 +53,22 @@ public partial class Enemy : CharacterBody3D
 			_attackTimer -= (float)delta;
 			if (_attackTimer <= 0f)
 			{
+				// Útok na hráče
 				var player = _target as Player;
 				if (player != null)
 				{
 					player.TakeDamage(DamageAmount);
-					GD.Print("Démon udeřil! HP hráče: " + player.Health);
+					GD.Print("Démon udeřil hráče!");
 				}
+
+				// Útok na kytku
+				var flower = _target as Flower;
+				if (flower != null)
+				{
+					flower.TakeDamage(DamageAmount);
+					GD.Print("Démon udeřil kytku!");
+				}
+
 				_attackTimer = AttackCooldown;
 			}
 		}

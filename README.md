@@ -34,6 +34,8 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [ ] Environment (trees, rocks, arena boundary)
 - [ ] Spell particle effects
 - [ ] Hit effects on enemies
+- [ ] Different text font
+- [ ] Crosshair
 
 ### Audio
 - [ ] Spell cast sounds

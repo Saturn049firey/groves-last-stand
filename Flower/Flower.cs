@@ -1,15 +1,27 @@
 using Godot;
-using System;
 
 public partial class Flower : StaticBody3D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    [Export] public float MaxHealth = 100f;
+	public float Health => _health;
+    private float _health;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready()
+    {
+        _health = MaxHealth;
+        AddToGroup("flower");
+    }
+
+    public void TakeDamage(float amount)
+    {
+        _health -= amount;
+        _health = Mathf.Max(_health, 0);
+        GD.Print("Flower HP: " + _health);
+
+        if (_health <= 0)
+        {
+            GD.Print("GAME OVER - Flower died!");
+            // TODO: game over obrazovka
+        }
+    }
 }
