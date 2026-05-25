@@ -91,12 +91,11 @@ public partial class Player : CharacterBody3D
 		var spell = SpellScene.Instantiate<Spell>();
 		GetParent().AddChild(spell);
 
-		// Kouzlo startuje před hráčem ve výšce očí
 		var camera = GetNode<Camera3D>("Camera3D");
 		spell.GlobalPosition = camera.GlobalPosition + (-camera.GlobalTransform.Basis.Z * 1.0f);
 
-		// Směr = kam se díváš
-		spell.Initialize(-camera.GlobalTransform.Basis.Z);
+		// Předáme směr i typ spellu
+		spell.Initialize(-camera.GlobalTransform.Basis.Z, _currentSpell);
 	}
 
 	private void CycleSpell(int direction)

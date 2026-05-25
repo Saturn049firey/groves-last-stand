@@ -8,9 +8,10 @@ public partial class Spell : Area3D
 
     private Vector3 _direction;
 
-    public void Initialize(Vector3 direction)
+    public void Initialize(Vector3 direction, Player.SpellType spellType)
     {
         _direction = direction.Normalized();
+        SetSpellType(spellType);
     }
 
     public override void _Ready()
@@ -33,5 +34,28 @@ public partial class Spell : Area3D
             enemy.TakeDamage(Damage);
             QueueFree();
         }
+    }
+
+    private void SetSpellType(Player.SpellType spellType)
+    {
+        var mesh = GetNode<MeshInstance3D>("MeshInstance3D");
+        if (mesh == null) return;
+
+        var material = new StandardMaterial3D();
+        material.EmissionEnabled = true;
+
+        Color color = spellType switch
+        {
+            Player.SpellType.Fireball  => new Color(1.0f, 0.2f, 0.0f),
+            Player.SpellType.IceShard  => new Color(0.0f, 0.5f, 1.0f),
+            Player.SpellType.Lightning => new Color(1.0f, 1.0f, 0.0f),
+            Player.SpellType.Poison    => new Color(0.0f, 1.0f, 0.2f),
+            _ => new Color(1.0f, 1.0f, 1.0f)
+        };
+
+        material.AlbedoColor = color;
+        material.Emission = color;
+        material.EmissionEnergyMultiplier = 2.0f;
+        mesh.MaterialOverride = material;
     }
 }
