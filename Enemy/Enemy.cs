@@ -16,6 +16,9 @@ public partial class Enemy : CharacterBody3D
 
 	public override void _Ready()
 	{
+		GD.Print("Scale před reset: " + Scale);
+		Scale = Vector3.One;
+		GD.Print("Scale po reset: " + Scale);
 		_health = MaxHealth;
 		_target = GetTree().GetFirstNodeInGroup("flower") as Node3D;
 
@@ -53,7 +56,6 @@ public partial class Enemy : CharacterBody3D
 			_attackTimer -= (float)delta;
 			if (_attackTimer <= 0f)
 			{
-				// Útok na hráče
 				var player = _target as Player;
 				if (player != null)
 				{
@@ -61,7 +63,6 @@ public partial class Enemy : CharacterBody3D
 					GD.Print("Démon udeřil hráče!");
 				}
 
-				// Útok na kytku
 				var flower = _target as Flower;
 				if (flower != null)
 				{

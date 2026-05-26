@@ -42,20 +42,18 @@ public partial class WaveManager : Node
         if (EnemyScene == null || SpawnPoint == null) return;
 
         var enemy = EnemyScene.Instantiate<Enemy>();
-        GetParent().AddChild(enemy);
 
-        // Spawn u portálu s malým rozptylem
+        // Přidej do root scény místo do GetParent()
+        GetTree().CurrentScene.AddChild(enemy);
+
         var offset = new Vector3(
             GD.Randf() * 2f - 1f,
             0,
             GD.Randf() * 2f - 1f
         );
         enemy.GlobalPosition = SpawnPoint.GlobalPosition + offset;
-
-        // Když démon zemře → zkontroluj jestli vlna skončila
         enemy.TreeExited += OnEnemyDied;
     }
-
     private void OnEnemyDied()
     {
         _enemiesAlive--;
