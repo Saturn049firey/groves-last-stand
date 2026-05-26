@@ -36,6 +36,7 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [ ] Hit effects on enemies
 - [x] Different text font
 - [x] Crosshair
+- [ ] Enemies fade when die
 
 ### Audio
 - [ ] Spell cast sounds

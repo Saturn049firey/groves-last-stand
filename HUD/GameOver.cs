@@ -23,6 +23,7 @@ public partial class GameOver : CanvasLayer
 
 	private void OnRestartButtonPressed()
 	{
+		GD.Print("penis2");
 		// Odpauzne hru
 		GetTree().Paused = false;
 
@@ -35,6 +36,7 @@ public partial class GameOver : CanvasLayer
 
 	private void OnQuitButtonPressed()
 	{
+		GD.Print("penis1");
 		GetTree().Quit();
 	}
 }

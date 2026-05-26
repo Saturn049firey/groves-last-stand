@@ -43,8 +43,7 @@ public partial class WaveManager : Node
 
         var enemy = EnemyScene.Instantiate<Enemy>();
 
-        // Přidej do root scény místo do GetParent()
-        GetTree().CurrentScene.AddChild(enemy);
+        AddChild(enemy);
 
         var offset = new Vector3(
             GD.Randf() * 2f - 1f,

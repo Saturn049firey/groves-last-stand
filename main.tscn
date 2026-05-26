@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://03orsrnm782s"]
 
 [ext_resource type="PackedScene" uid="uid://tddhgiuawsrd" path="res://Player/player.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bg5r0xgrcyiey" path="res://Managers/GameManager.cs" id="1_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dwvvi2dwg0tv4" path="res://Portal/portal.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ba3medhrgliwu" path="res://HUD/game_over.tscn" id="2_4c57u"]
 [ext_resource type="Script" uid="uid://xvdilaawybyt" path="res://Player/Camera.cs" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cfy6dxqjswpck" path="res://Staff/staff.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dyt02qdfwx6cp" path="res://Spells/spell.tscn" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://bblh88q15jkeh" path="res://Enemy/enemy.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cpl0loejy5jly" path="res://Flower/flower.tscn" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://b5lq6mcr78ubl" path="res://HUD/HUD.cs" id="7_272bh"]
-[ext_resource type="Script" uid="uid://ch5ru3c2dchji" path="res://Waves/WaveManager.cs" id="9_kek77"]
+[ext_resource type="Script" uid="uid://ch5ru3c2dchji" path="res://Managers/WaveManager.cs" id="9_kek77"]
 
 [sub_resource type="Theme" id="Theme_272bh"]
 default_font_size = 32
@@ -71,7 +73,6 @@ volumetric_fog_albedo = Color(0.5408399, 0.43784207, 0.38334382, 1)
 volumetric_fog_sky_affect = 0.3
 
 [node name="Main" type="Node3D" unique_id=1892234761]
-transform = Transform3D(2.2831972, 0, 0, 0, 2.2831972, 0, 0, 0, 2.2831972, 0, 0, 0)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1086211529 node_paths=PackedStringArray("HealthBar", "ManaBar", "SpellLabel", "FlowerHpBar", "Player", "Flower")]
 follow_viewport_enabled = true
@@ -82,6 +83,8 @@ SpellLabel = NodePath("VBoxContainer/Spell")
 FlowerHpBar = NodePath("HpFlower")
 Player = NodePath("../SubViewportContainer/SubViewport/Player")
 Flower = NodePath("../SubViewportContainer/SubViewport/Flower")
+
+[node name="GameOver" parent="HUD" unique_id=2117389129 instance=ExtResource("2_4c57u")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=132827854]
 anchors_preset = -1
@@ -141,6 +144,15 @@ text = "."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="WaveManager" type="Node3D" parent="." unique_id=2065761930 node_paths=PackedStringArray("SpawnPoint")]
+script = ExtResource("9_kek77")
+EnemyScene = ExtResource("5_lquwl")
+SpawnPoint = NodePath("../SubViewportContainer/SubViewport/Portal")
+
+[node name="GameManager" type="Node3D" parent="." unique_id=1449871336 node_paths=PackedStringArray("gameOver")]
+script = ExtResource("1_efxa6")
+gameOver = NodePath("../HUD/GameOver")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1022041836]
 environment = SubResource("Environment_h2yge")
 
@@ -172,6 +184,9 @@ size = Vector3(50, 1, 50)
 [node name="Portal" parent="SubViewportContainer/SubViewport" unique_id=137903878 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 2, -9)
 
+[node name="Flower" parent="SubViewportContainer/SubViewport" unique_id=600412810 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -16, 0, 0)
+
 [node name="Player" parent="SubViewportContainer/SubViewport" unique_id=1844578736 node_paths=PackedStringArray("staff") instance=ExtResource("1_0xm2m")]
 staff = NodePath("Staff")
 SpellScene = ExtResource("4_5vw27")
@@ -184,10 +199,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.1)
 current = true
 script = ExtResource("2_h2yge")
 
-[node name="Flower" parent="SubViewportContainer/SubViewport" unique_id=600412810 instance=ExtResource("6_7mycd")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -16, 0, 0)
-
-[node name="WaveManager" type="Node3D" parent="." unique_id=2065761930 node_paths=PackedStringArray("SpawnPoint")]
-script = ExtResource("9_kek77")
-EnemyScene = ExtResource("5_lquwl")
-SpawnPoint = NodePath("../SubViewportContainer/SubViewport/Portal")
+[connection signal="Death" from="SubViewportContainer/SubViewport/Flower" to="GameManager" method="OnFlowerDeath"]

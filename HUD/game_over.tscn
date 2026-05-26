@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c1cu4w1q0d1if" path="res://HUD/GameOver.cs" id="1_qrorf"]
 
-[node name="gameOver" type="CanvasLayer" unique_id=2117389129]
+[node name="GameOver" type="CanvasLayer" unique_id=2117389129]
+process_mode = 2
 script = ExtResource("1_qrorf")
 
 [node name="Background" type="ColorRect" parent="." unique_id=444013368]
@@ -12,49 +13,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5882353)
+metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" type="Label" parent="." unique_id=609070382]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -603.0
-offset_top = -140.0
-offset_right = 603.0
-offset_bottom = 117.0
+anchors_preset = -1
+anchor_left = 0.186
+anchor_top = 0.37
+anchor_right = 0.814
+anchor_bottom = 0.60800004
+offset_left = -0.11999512
+offset_top = 0.3999939
+offset_right = 0.11999512
+offset_bottom = 0.35998535
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 256
 text = "Game Over"
+metadata/_edit_use_anchors_ = true
 
 [node name="RestartButton" type="Button" parent="." unique_id=712044409]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -370.0
-offset_right = 110.0
-offset_bottom = -295.0
+process_mode = 2
+anchors_preset = -1
+anchor_left = 0.44300002
+anchor_top = 0.657
+anchor_right = 0.55700004
+anchor_bottom = 0.72700006
+offset_left = -0.5600586
+offset_top = 0.44000244
+offset_right = 0.5599365
+offset_bottom = -0.16003418
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "Restart"
+metadata/_edit_use_anchors_ = true
 
 [node name="QuitButton" type="Button" parent="." unique_id=724324378]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -65.0
-offset_top = -235.0
-offset_right = 64.0
-offset_bottom = -160.0
+process_mode = 2
+anchors_preset = -1
+anchor_left = 0.46600002
+anchor_top = 0.78200006
+anchor_right = 0.53300005
+anchor_bottom = 0.85200006
+offset_left = 0.27996826
+offset_top = 0.4399414
+offset_right = 0.6398926
+offset_bottom = -0.16003418
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_font_sizes/font_size = 64
 text = "Quit"
+
+[connection signal="pressed" from="RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="pressed" from="QuitButton" to="." method="OnQuitButtonPressed"]

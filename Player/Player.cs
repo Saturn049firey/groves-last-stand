@@ -48,24 +48,24 @@ public partial class Player : CharacterBody3D
 
 		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-		if (direction != Vector3.Zero)
-		{
-			velocity.X = direction.X * Speed;
-			velocity.Z = direction.Z * Speed;
-		}
-		else
+		if (direction == Vector3.Zero)
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
+		}
+		else
+		{
+			velocity.X = direction.X * Speed;
+			velocity.Z = direction.Z * Speed;
 		}
 
 		Velocity = velocity;
 		MoveAndSlide();
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _Input(InputEvent inputEvent)
 	{
-		if (@event is InputEventMouseButton mouseBtn && mouseBtn.Pressed)
+		if (inputEvent is InputEventMouseButton mouseBtn && mouseBtn.Pressed)
 		{
 			if (mouseBtn.ButtonIndex == MouseButton.WheelUp)
 				CycleSpell(1);

@@ -16,9 +16,6 @@ public partial class Enemy : CharacterBody3D
 
 	public override void _Ready()
 	{
-		GD.Print("Scale před reset: " + Scale);
-		Scale = Vector3.One;
-		GD.Print("Scale po reset: " + Scale);
 		_health = MaxHealth;
 		_target = GetTree().GetFirstNodeInGroup("flower") as Node3D;
 
@@ -27,6 +24,11 @@ public partial class Enemy : CharacterBody3D
 			HpBar.MaxValue = MaxHealth;
 			HpBar.Value = _health;
 		}
+	}
+
+	public void Kill()
+	{
+		QueueFree();
 	}
 
 	public void TakeDamage(float amount)
@@ -38,13 +40,17 @@ public partial class Enemy : CharacterBody3D
 			HpBar.Value = _health;
 
 		GD.Print("Demon HP: " + _health);
+
 		if (_health <= 0)
-			QueueFree();
+		{
+			_health = 0;
+			Kill();
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_target == null) return;
+		if (_target == null) { return; }
 
 		Vector3 toTarget = _target.GlobalPosition - GlobalPosition;
 		toTarget.Y = 0;
@@ -60,14 +66,14 @@ public partial class Enemy : CharacterBody3D
 				if (player != null)
 				{
 					player.TakeDamage(DamageAmount);
-					GD.Print("Démon udeřil hráče!");
+					GD.Print("Demon has hit the player!");
 				}
 
 				var flower = _target as Flower;
 				if (flower != null)
 				{
 					flower.TakeDamage(DamageAmount);
-					GD.Print("Démon udeřil kytku!");
+					GD.Print("Demon has hit the flower!");
 				}
 
 				_attackTimer = AttackCooldown;
@@ -90,9 +96,12 @@ public partial class Enemy : CharacterBody3D
 		}
 
 		if (!IsOnFloor())
+		{
 			velocity.Y += GetGravity().Y * (float)delta;
+		}
 
 		Velocity = velocity;
+
 		MoveAndSlide();
 	}
 }
