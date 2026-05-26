@@ -34,8 +34,9 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [ ] Environment (trees, rocks, arena boundary)
 - [ ] Spell particle effects
 - [ ] Hit effects on enemies
-- [ ] Different text font
-- [ ] Crosshair
+- [x] Different text font
+- [x] Crosshair
+- [ ] Better crosshair
 
 ### Audio
 - [ ] Spell cast sounds
@@ -63,3 +64,4 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - **Spell combos** - Ice Shard slows enemy, then Fireball deals bonus damage (DnD synergy)
 - **Flower HP bar** - Show flower HP in HUD when far away, show 3D bar above flower when close
 - **Enemy direction indicator** - Show arrows or dots on the edge of the screen pointing to where enemies are coming from
+- **Fonts** - Level Fourteen Druid, MedievalSharp, UnifrakturCook

@@ -33,6 +33,10 @@ player=""
 enemy=""
 flower=""
 
+[gui]
+
+theme/custom_font="uid://b5llitn6ns0c3"
+
 [input]
 
 ui_left={

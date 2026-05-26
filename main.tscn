@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bblh88q15jkeh" path="res://Enemy/enemy.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cpl0loejy5jly" path="res://Flower/flower.tscn" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://b5lq6mcr78ubl" path="res://HUD/HUD.cs" id="7_272bh"]
+[ext_resource type="Script" uid="uid://ch5ru3c2dchji" path="res://Waves/WaveManager.cs" id="9_kek77"]
 
 [sub_resource type="Theme" id="Theme_272bh"]
 default_font_size = 32
@@ -97,6 +98,7 @@ size_flags_vertical = 0
 layout_mode = 2
 theme = SubResource("Theme_272bh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
 text = "Spell"
 
 [node name="HpPlayer" type="ProgressBar" parent="HUD/VBoxContainer" unique_id=496510647]
@@ -119,6 +121,25 @@ offset_bottom = 40.0
 theme = SubResource("Theme_ycdy4")
 value = 50.0
 show_percentage = false
+
+[node name="Crosshair" type="Label" parent="HUD" unique_id=1770557354]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -44.0
+offset_right = 11.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1022041836]
 environment = SubResource("Environment_h2yge")
@@ -174,3 +195,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 21)
 
 [node name="Enemy3" parent="SubViewportContainer/SubViewport" unique_id=569131240 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 21)
+
+[node name="WaveManager" type="Node3D" parent="." unique_id=2065761930 node_paths=PackedStringArray("SpawnPoint")]
+script = ExtResource("9_kek77")
+EnemyScene = ExtResource("5_lquwl")
+SpawnPoint = NodePath("../SubViewportContainer/SubViewport/Portal")
