@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ba3medhrgliwu"]
+
+[ext_resource type="Script" uid="uid://bjpgq5ljaqbvw" path="res://GameOver.cs" id="1_qrorf"]
+
+[node name="gameOver" type="CanvasLayer" unique_id=2117389129]
+script = ExtResource("1_qrorf")
+
+[node name="Background" type="ColorRect" parent="." unique_id=444013368]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="GameOver" type="Label" parent="." unique_id=609070382]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -603.0
+offset_top = -140.0
+offset_right = 603.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 256
+text = "Game Over"
+
+[node name="RestartButton" type="Button" parent="." unique_id=712044409]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -370.0
+offset_right = 110.0
+offset_bottom = -295.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="." unique_id=724324378]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = -235.0
+offset_right = 64.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Quit"
