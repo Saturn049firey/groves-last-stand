@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://doefm3c1b2kax"]
+
+[ext_resource type="Script" uid="uid://xarpffqvptqx" path="res://MainMenu/MainMenu.cs" id="1_06t4h"]
+
+[node name="Node2D" type="CanvasLayer" unique_id=874360222]
+script = ExtResource("1_06t4h")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=337558344]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3854925, 0.38549247, 0.38549247, 1)
+
+[node name="GameName" type="Label" parent="." unique_id=310462874]
+offset_right = 40.0
+offset_bottom = 17.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=71621292]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -101.0
+offset_top = -58.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=958974456]
+layout_mode = 2
+
+[node name="FinalWaveBox" type="SpinBox" parent="VBoxContainer" unique_id=93018606]
+layout_mode = 2
+
+[node name="FinalWaveLabel" type="Label" parent="VBoxContainer" unique_id=399564260]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="." unique_id=1510779056]
+offset_right = 8.0
+offset_bottom = 8.0
