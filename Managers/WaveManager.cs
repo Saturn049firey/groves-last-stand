@@ -26,19 +26,34 @@ public partial class WaveManager : Node
             StartWave();
     }
 
+    private int GetEnemiesInWave()
+    {
+        return EnemiesPerWave + (_currentWave - 1) * 2;
+    }
+
     private void StartWave()
     {
         _currentWave++;
+
+        if (_currentWave > GameData.FinalWave)
+        {
+            GD.Print("VICTORY!");
+            // TODO: zobrazit victory screen
+            return;
+        }
+
         GD.Print("StartWave zavolano, vlna: " + _currentWave);
         _waveInProgress = true;
 
-        int count = EnemiesPerWave + (_currentWave - 1) * 2;
+        int count = GetEnemiesInWave();
         _enemiesAlive = count;
 
-        GD.Print($"Vlna {_currentWave} začíná! Démonů: {count}");
+        GD.Print($"Vlna {_currentWave} začíná! Počet démonů: {count}");
 
         for (int i = 0; i < count; i++)
+        {
             SpawnEnemy();
+        }
     }
 
     private void SpawnEnemy()

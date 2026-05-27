@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameData="*uid://c7bd2e4v3f11j"
+
 [display]
 
 window/size/viewport_width=1920
@@ -26,6 +30,10 @@ window/vsync/vsync_mode=0
 [dotnet]
 
 project/assembly_name="Groves_Last_Stand"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [global_group]
 
