@@ -2,15 +2,19 @@ using Godot;
 
 public partial class WaveManager : Node
 {
-    [Export] public PackedScene EnemyScene;     // přetáhni Enemy.tscn
-    [Export] public Node3D SpawnPoint;          // portál kde spawnou démoni
-    [Export] public float TimeBetweenWaves = 10f; // čas mezi vlnami
-    [Export] public int EnemiesPerWave = 3;     // démoni v první vlně
+    [Export] public PackedScene EnemyScene;
+    [Export] public Node3D SpawnPoint;
+    [Export] public float TimeBetweenWaves = 10f;
+    [Export] public int EnemiesPerWave = 3;
 
     private int _currentWave = 0;
     private float _waveTimer = 0f;
     private bool _waveInProgress = false;
     private int _enemiesAlive = 0;
+
+    // Public property pro HUD
+    public int CurrentWave => _currentWave;
+    public bool WaveInProgress => _waveInProgress;
 
     public override void _Process(double delta)
     {
@@ -25,9 +29,9 @@ public partial class WaveManager : Node
     private void StartWave()
     {
         _currentWave++;
+        GD.Print("StartWave zavolano, vlna: " + _currentWave);
         _waveInProgress = true;
 
-        // Každá vlna má více démonů
         int count = EnemiesPerWave + (_currentWave - 1) * 2;
         _enemiesAlive = count;
 
@@ -42,7 +46,6 @@ public partial class WaveManager : Node
         if (EnemyScene == null || SpawnPoint == null) return;
 
         var enemy = EnemyScene.Instantiate<Enemy>();
-
         AddChild(enemy);
 
         var offset = new Vector3(
@@ -53,6 +56,7 @@ public partial class WaveManager : Node
         enemy.GlobalPosition = SpawnPoint.GlobalPosition + offset;
         enemy.TreeExited += OnEnemyDied;
     }
+
     private void OnEnemyDied()
     {
         _enemiesAlive--;

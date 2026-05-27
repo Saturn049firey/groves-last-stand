@@ -74,7 +74,7 @@ volumetric_fog_sky_affect = 0.3
 
 [node name="Main" type="Node3D" unique_id=1892234761]
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1086211529 node_paths=PackedStringArray("HealthBar", "ManaBar", "SpellLabel", "FlowerHpBar", "Player", "Flower")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1086211529 node_paths=PackedStringArray("HealthBar", "ManaBar", "SpellLabel", "FlowerHpBar", "Player", "Flower", "WaveLabel", "WaveManager")]
 follow_viewport_enabled = true
 script = ExtResource("7_272bh")
 HealthBar = NodePath("VBoxContainer/HpPlayer")
@@ -83,6 +83,18 @@ SpellLabel = NodePath("VBoxContainer/Spell")
 FlowerHpBar = NodePath("HpFlower")
 Player = NodePath("../SubViewportContainer/SubViewport/Player")
 Flower = NodePath("../SubViewportContainer/SubViewport/Flower")
+WaveLabel = NodePath("WaveLabel")
+WaveManager = NodePath("../SubViewportContainer/SubViewport/WaveManager")
+
+[node name="WaveLabel" type="Label" parent="HUD" unique_id=1287580870]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -313.0
+offset_bottom = 81.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 80
+text = "Wave: X"
 
 [node name="GameOver" parent="HUD" unique_id=2117389129 instance=ExtResource("2_4c57u")]
 

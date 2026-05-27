@@ -8,6 +8,8 @@ public partial class HUD : CanvasLayer
 	[Export] public ProgressBar FlowerHpBar;
 	[Export] public Player Player;
 	[Export] public Flower Flower;
+	[Export] public Label WaveLabel;
+	[Export] public WaveManager WaveManager;
 
 	public override void _Process(double delta)
 	{
@@ -26,6 +28,12 @@ public partial class HUD : CanvasLayer
 		{
 			FlowerHpBar.MaxValue = Flower.MaxHealth;
 			FlowerHpBar.Value = Flower.Health;
+		}
+
+		if (WaveManager != null && WaveLabel != null)
+		{
+			//GD.Print("CurrentWave: " + WaveManager.CurrentWave);
+			WaveLabel.Text = "Wave: " + WaveManager.CurrentWave;
 		}
 	}
 }
