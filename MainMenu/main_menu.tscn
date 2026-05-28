@@ -1,42 +1,70 @@
 [gd_scene format=3 uid="uid://doefm3c1b2kax"]
 
 [ext_resource type="Script" uid="uid://xarpffqvptqx" path="res://MainMenu/MainMenu.cs" id="1_06t4h"]
+[ext_resource type="Theme" uid="uid://bqeolbjklyosx" path="res://Assets/Themes/main_menu_button.tres" id="2_3w4mj"]
 
-[node name="Node2D" type="CanvasLayer" unique_id=874360222]
+[node name="MainMenu" type="CanvasLayer" unique_id=874360222 node_paths=PackedStringArray("FinalWaveSpinBox")]
 script = ExtResource("1_06t4h")
+FinalWaveSpinBox = NodePath("VBoxContainer/FinalWaveBox")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=337558344]
+[node name="Background" type="ColorRect" parent="." unique_id=337558344]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.3854925, 0.38549247, 0.38549247, 1)
+color = Color(0.33848038, 0.9999998, 0.52181417, 0.5882353)
 
 [node name="GameName" type="Label" parent="." unique_id=310462874]
-offset_right = 40.0
-offset_bottom = 17.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -808.5
+offset_top = -290.0
+offset_right = 808.5
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_font_sizes/font_size = 200
+text = "Grove’s Last Stand"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=71621292]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -101.0
-offset_top = -58.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -810.0
+offset_top = 160.0
+offset_right = -563.0
+offset_bottom = 392.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=958974456]
 layout_mode = 2
+theme = ExtResource("2_3w4mj")
+theme_override_font_sizes/font_size = 64
+text = "❧ Play"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1510779056]
+layout_mode = 2
+theme = ExtResource("2_3w4mj")
+theme_override_font_sizes/font_size = 64
+text = "❧ Quit"
 
 [node name="FinalWaveBox" type="SpinBox" parent="VBoxContainer" unique_id=93018606]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="FinalWaveLabel" type="Label" parent="VBoxContainer" unique_id=399564260]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_font_sizes/font_size = 48
+text = "Final Wave: X"
 
-[node name="QuitButton" type="Button" parent="." unique_id=1510779056]
-offset_right = 8.0
-offset_bottom = 8.0
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="OnQuitButtonPressed"]

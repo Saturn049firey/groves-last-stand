@@ -36,7 +36,8 @@ public partial class GameOver : CanvasLayer
 
 	private void OnQuitButtonPressed()
 	{
-		GD.Print("Quit");
+		GD.Print("Quit pressed!");
+		GetTree().Paused = false;
 		GetTree().Quit();
 	}
 }

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://fpmfsd2wf1ye"]
+
+[ext_resource type="Script" uid="uid://b0qub2ijjbkn1" path="res://VictoryMenu/Victory.cs" id="1_gybbl"]
+
+[node name="VictoryScreen" type="CanvasLayer" unique_id=1364445678]
+script = ExtResource("1_gybbl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2051820123]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25565878, 0.25565878, 0.25565878, 1)
+
+[node name="Victory" type="Label" parent="." unique_id=588693834]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -814.5
+offset_top = -140.0
+offset_right = 814.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.92941177, 0.84705883, 0, 1)
+theme_override_font_sizes/font_size = 180
+text = "You saved the Grove!"
+
+[node name="PlayButton" type="Button" parent="." unique_id=1444582141]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.5
+offset_top = 170.0
+offset_right = 147.5
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Play again"
+
+[node name="QuitButton" type="Button" parent="." unique_id=1376425962]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.5
+offset_top = -235.0
+offset_right = 65.5
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Quit"

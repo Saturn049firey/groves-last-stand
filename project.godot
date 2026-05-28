@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Groves_Last_Stand"
-run/main_scene="uid://03orsrnm782s"
+run/main_scene="uid://doefm3c1b2kax"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"

@@ -22,6 +22,7 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [x] Add demon waves system (spawn from portals)
 - [x] Add sacred flower with HP that demons attack
 - [x] Game over screen when flower dies
+- [ ] Add terrain
 - [ ] Victory screen after surviving X waves
 - [ ] Implement spell effects (Fireball burn, Ice slow, Lightning chain, Poison cloud)
 - [x] Add spell cooldowns
@@ -46,14 +47,15 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [ ] Music
 
 ### Polish
-- [ ] Main menu
+- [x] Main menu
 - [ ] Pause menu
-- [ ] Score system
+- [ ] Score system (kill counter)
+- [x] Score system (wave counter)
 - [x] Difficulty scaling per wave
 
 ## Fix
 - [ ] better Crosshair
-- [ ] Demons spawn large
+- [x] Demons spawn large
 
 ## Ideas
 - **Spell dice** - Instead of fixed damage, roll random dice
