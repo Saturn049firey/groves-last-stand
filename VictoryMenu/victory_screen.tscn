@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.25565878, 0.25565878, 0.25565878, 1)
 
 [node name="Victory" type="Label" parent="." unique_id=588693834]
@@ -30,31 +31,36 @@ theme_override_font_sizes/font_size = 180
 text = "You saved the Grove!"
 
 [node name="PlayButton" type="Button" parent="." unique_id=1444582141]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -146.5
-offset_top = 170.0
-offset_right = 147.5
-offset_bottom = 245.0
+process_mode = 2
+anchors_preset = -1
+anchor_left = 0.42400002
+anchor_top = 0.657
+anchor_right = 0.577
+anchor_bottom = 0.72700006
+offset_left = -0.5800781
+offset_top = 0.44000244
+offset_right = -0.3400879
+offset_bottom = -0.16003418
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Play again"
 
 [node name="QuitButton" type="Button" parent="." unique_id=1376425962]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -64.5
-offset_top = -235.0
-offset_right = 65.5
-offset_bottom = -160.0
+process_mode = 2
+anchors_preset = -1
+anchor_left = 0.46600002
+anchor_top = 0.78200006
+anchor_right = 0.53400004
+anchor_bottom = 0.85200006
+offset_left = 0.77996826
+offset_top = 0.4399414
+offset_right = 0.2199707
+offset_bottom = -0.16003418
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "Quit"
+
+[connection signal="pressed" from="PlayButton" to="." method="OnPlayAgainButtonPressed"]
+[connection signal="pressed" from="QuitButton" to="." method="OnQuitButtonPressed"]

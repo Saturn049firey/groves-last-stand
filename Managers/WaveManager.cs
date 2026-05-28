@@ -6,13 +6,13 @@ public partial class WaveManager : Node
     [Export] public Node3D SpawnPoint;
     [Export] public float TimeBetweenWaves = 10f;
     [Export] public int EnemiesPerWave = 3;
+    [Export] public Victory VictoryScreen;
 
     private int _currentWave = 0;
     private float _waveTimer = 0f;
     private bool _waveInProgress = false;
     private int _enemiesAlive = 0;
 
-    // Public property pro HUD
     public int CurrentWave => _currentWave;
     public bool WaveInProgress => _waveInProgress;
 
@@ -38,7 +38,7 @@ public partial class WaveManager : Node
         if (_currentWave > GameData.FinalWave)
         {
             GD.Print("VICTORY!");
-            // TODO: zobrazit victory screen
+            VictoryScreen?.ShowVictory();
             return;
         }
 
@@ -51,9 +51,7 @@ public partial class WaveManager : Node
         GD.Print($"Vlna {_currentWave} začíná! Počet démonů: {count}");
 
         for (int i = 0; i < count; i++)
-        {
             SpawnEnemy();
-        }
     }
 
     private void SpawnEnemy()

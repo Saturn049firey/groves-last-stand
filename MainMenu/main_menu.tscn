@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://xarpffqvptqx" path="res://MainMenu/MainMenu.cs" id="1_06t4h"]
 [ext_resource type="Theme" uid="uid://bqeolbjklyosx" path="res://Assets/Themes/main_menu_button.tres" id="2_3w4mj"]
 
+[sub_resource type="Theme" id="Theme_3w4mj"]
+default_font_size = 64
+
 [node name="MainMenu" type="CanvasLayer" unique_id=874360222 node_paths=PackedStringArray("FinalWaveSpinBox")]
 script = ExtResource("1_06t4h")
 FinalWaveSpinBox = NodePath("VBoxContainer/FinalWaveBox")
@@ -59,6 +62,7 @@ text = "❧ Quit"
 [node name="FinalWaveBox" type="SpinBox" parent="VBoxContainer" unique_id=93018606]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = SubResource("Theme_3w4mj")
 
 [node name="FinalWaveLabel" type="Label" parent="VBoxContainer" unique_id=399564260]
 layout_mode = 2

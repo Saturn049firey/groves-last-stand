@@ -182,10 +182,11 @@ transform = Transform3D(0.8660255, -0.35355327, -0.35355344, -0.12940942, -0.841
 light_energy = 2.0
 shadow_enabled = true
 
-[node name="WaveManager" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=2065761930 node_paths=PackedStringArray("SpawnPoint")]
+[node name="WaveManager" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=2065761930 node_paths=PackedStringArray("SpawnPoint", "VictoryScreen")]
 script = ExtResource("9_kek77")
 EnemyScene = ExtResource("5_lquwl")
 SpawnPoint = NodePath("../Portal")
+VictoryScreen = NodePath("../../../HUD/VictoryScreen")
 
 [node name="GameManager" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1449871336 node_paths=PackedStringArray("gameOver")]
 script = ExtResource("1_efxa6")

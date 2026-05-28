@@ -56,6 +56,7 @@ Built in Godot 4 with a PS1 retro aesthetic.
 ## Fix
 - [ ] better Crosshair
 - [x] Demons spawn large
+- [ ] Victory screen play again button doesnt work
 
 ## Ideas
 - **Spell dice** - Instead of fixed damage, roll random dice
