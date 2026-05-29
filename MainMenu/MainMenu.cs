@@ -6,7 +6,7 @@ public partial class MainMenu : CanvasLayer
 
 	public override void _Ready()
 	{
-		FinalWaveSpinBox.Value = 10;
+		FinalWaveSpinBox.Value = 1;
 		FinalWaveSpinBox.MinValue = 1;
 		FinalWaveSpinBox.MaxValue = 99;
 	}

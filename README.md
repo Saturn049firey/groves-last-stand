@@ -37,8 +37,7 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [ ] Hit effects on enemies
 - [x] Different text font
 - [x] Crosshair
-- [ ] Enemies fade when die
-- [x] Wave counter
+- [ ] Enemies fade when dies
 
 ### Audio
 - [ ] Spell cast sounds
@@ -48,6 +47,7 @@ Built in Godot 4 with a PS1 retro aesthetic.
 
 ### Polish
 - [x] Main menu
+- [ ] Main menu background (camera in world)
 - [ ] Pause menu
 - [ ] Score system (kill counter)
 - [x] Score system (wave counter)
@@ -56,7 +56,7 @@ Built in Godot 4 with a PS1 retro aesthetic.
 ## Fix
 - [ ] better Crosshair
 - [x] Demons spawn large
-- [ ] Victory screen play again button doesnt work
+- [x] Victory screen play again button doesnt work
 
 ## Ideas
 - **Spell dice** - Instead of fixed damage, roll random dice

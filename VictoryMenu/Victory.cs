@@ -16,10 +16,8 @@ public partial class Victory : CanvasLayer
 
 	private void OnPlayAgainButtonPressed()
 	{
-		GD.Print("Play again");
 		GetTree().Paused = false;
-		Input.SetMouseMode(Input.MouseModeEnum.Captured);
-		GetTree().ChangeSceneToFile("res://MainMenu.tscn");
+		GetTree().ChangeSceneToFile("res://MainMenu/main_menu.tscn");
 	}
 
 	private void OnQuitButtonPressed()
