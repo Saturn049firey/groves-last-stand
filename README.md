@@ -23,7 +23,7 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [x] Add sacred flower with HP that demons attack
 - [x] Game over screen when flower dies
 - [ ] Add terrain
-- [ ] Victory screen after surviving X waves
+- [x] Victory screen after surviving X waves
 - [ ] Implement spell effects (Fireball burn, Ice slow, Lightning chain, Poison cloud)
 - [x] Add spell cooldowns
 - [x] Add enemy HP bars (Sprite3D billboard)
@@ -38,6 +38,7 @@ Built in Godot 4 with a PS1 retro aesthetic.
 - [x] Different text font
 - [x] Crosshair
 - [ ] Enemies fade when dies
+- [ ] Camera shake
 
 ### Audio
 - [ ] Spell cast sounds
